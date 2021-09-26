@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BaseText">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="BaseText.Title" parent="BaseText">
+        <item name="android:textSize">@dimen/big_text_size</item>
+    </style>
+
+    <style name="BaseText.Subtitle.Bold" parent="BaseText">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BaseText.Subtitle.TransparentWhite" parent="BaseText">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:textColor">@color/white_transparent</item>
+    </style>
+
+    <style name="BaseText.Subtitle.TransparentWhite.Bold" parent="BaseText">
+        <item name="android:textSize">@dimen/normal_text_size</item>
+        <item name="android:textColor">@color/white_transparent</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BaseText.BigWeather" parent="BaseText.Title">
+        <item name="android:textSize">@dimen/biggest_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CollapsingToolbarLayoutExpandedTextStyle">
+        <item name="android:textColor">@android:color/transparent</item>
+        <item name="android:textSize">0sp</item>
+    </style>
+
+    <style name="CollapsingToolbarLayoutCollapsedTextStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAppearance">@style/BaseText.Title</item>
+    </style>
+
+</resources>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.weatherappassignment.ui.viewModel.WeatherViewModel" />
+
+        <variable
+            name="handler"
+            type="com.example.weatherappassignment.ui.fragment.WeatherDetailHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dark_blue">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@{vm.selectedWeatherDay.data.isWarm ? @drawable/weather_hot_rounded_bg : @drawable/weather_rounded_bg}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/weather_rounded_bg">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:onClick="@{() -> handler.onBackButton()}"
+                android:padding="@dimen/margin_big"
+                android:src="@drawable/ic_arrow_back_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/location_label"
+                style="@style/BaseText.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_big"
+                android:gravity="center_vertical"
+                android:text="@{vm.selectedWeatherDay.data.getDate()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/current_weather_image"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/weather_image"
+                app:imageResource="@{vm.selectedWeatherDay.data.getWeatherStatusImage()}"
+                app:layout_constraintBottom_toTopOf="@id/max_temperature_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_max="@dimen/weather_icon_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/location_label"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintWidth_max="@dimen/weather_icon_size" />
+
+            <TextView
+                android:id="@+id/max_temperature_value"
+                style="@style/BaseText.BigWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.selectedWeatherDay.data.getMaxWeatherTemperature()}"
+                app:layout_constraintBottom_toTopOf="@id/weather_status"
+                app:layout_constraintEnd_toStartOf="@id/max_temperature_value_indicator"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/current_weather_image"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="--" />
+
+            <TextView
+                android:id="@+id/max_temperature_value_indicator"
+                style="@style/BaseText.BigWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_very_small"
+                android:text="@string/weather_amount_circle"
+                android:textSize="@dimen/weather_icon_circle_size"
+                app:layout_constraintEnd_toStartOf="@id/min_temperature_value"
+                app:layout_constraintStart_toEndOf="@id/max_temperature_value"
+                app:layout_constraintTop_toTopOf="@id/max_temperature_value" />
+
+            <TextView
+                android:id="@+id/min_temperature_value"
+                style="@style/BaseText.BigWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.selectedWeatherDay.data.getMinWeatherTemperature()}"
+                android:textColor="@color/white_transparent"
+                android:textSize="@dimen/small_title_text_size"
+                app:layout_constraintBottom_toTopOf="@id/weather_status"
+                app:layout_constraintEnd_toStartOf="@id/min_temperature_value_indicator"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/max_temperature_value_indicator"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="--" />
+
+            <TextView
+                android:id="@+id/min_temperature_value_indicator"
+                style="@style/BaseText.BigWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_very_small"
+                android:text="@string/weather_amount_circle"
+                android:textColor="@color/white_transparent"
+                android:textSize="@dimen/weather_icon_circle_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/min_temperature_value"
+                app:layout_constraintTop_toTopOf="@id/min_temperature_value" />
+
+            <TextView
+                android:id="@+id/weather_status"
+                style="@style/BaseText.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{vm.selectedWeatherDay.data.getWeatherStatus()}"
+                app:layout_constraintBottom_toTopOf="@id/guideline_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/max_temperature_value"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/temperature_hot_cold"
+                style="@style/BaseText.BigWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/weather_day_margin"
+                android:text="@{vm.selectedWeatherDay.data.getWeatherHotOrCold()}"
+                android:textSize="@dimen/small_title_text_size"
+                app:layout_constraintBottom_toTopOf="@id/guideline_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weather_status"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="" />
+
+            <View
+                android:id="@+id/view_separator"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="50dp"
+                android:background="@color/separator"
+                app:layout_constraintBottom_toTopOf="@id/guideline_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_divider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".80" />
+
+            <TextView
+                android:id="@+id/wind_label"
+                style="@style/BaseText.Subtitle.TransparentWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/weather_wind_label"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/humidity_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wind_value"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/humidity_label"
+                style="@style/BaseText.Subtitle.TransparentWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/weather_humidity_label"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/humidity_value"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/chance_of_rain_label"
+                style="@style/BaseText.Subtitle.TransparentWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/weather_chance_of_rain_label"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/humidity_label"
+                app:layout_constraintTop_toBottomOf="@id/chance_of_rain_value"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/wind_value"
+                style="@style/BaseText.Subtitle.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.format(@string/wind_speed, vm.selectedWeatherDay.data.getWeatherSpeed())}"
+                app:layout_constraintBottom_toTopOf="@id/wind_label"
+                app:layout_constraintEnd_toEndOf="@id/wind_label"
+                app:layout_constraintStart_toStartOf="@id/wind_label"
+                app:layout_constraintTop_toBottomOf="@id/guideline_divider"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="--" />
+
+            <TextView
+                android:id="@+id/humidity_value"
+                style="@style/BaseText.Subtitle.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.format(@string/percentage_format, vm.selectedWeatherDay.data.getWeatherHumidity())}"
+                app:layout_constraintBottom_toTopOf="@id/humidity_label"
+                app:layout_constraintEnd_toEndOf="@id/humidity_label"
+                app:layout_constraintStart_toStartOf="@id/humidity_label"
+                app:layout_constraintTop_toBottomOf="@id/guideline_divider"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="--" />
+
+            <TextView
+                android:id="@+id/chance_of_rain_value"
+                style="@style/BaseText.Subtitle.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.format(@string/percentage_format, vm.selectedWeatherDay.data.getRainProbability())}"
+                app:layout_constraintBottom_toTopOf="@id/chance_of_rain_label"
+                app:layout_constraintEnd_toEndOf="@id/chance_of_rain_label"
+                app:layout_constraintStart_toStartOf="@id/chance_of_rain_label"
+                app:layout_constraintTop_toBottomOf="@id/guideline_divider"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="--" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

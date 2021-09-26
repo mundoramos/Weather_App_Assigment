@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.weatherappassignment.ui.viewModel.DailyWeatherViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/weather_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/day_of_week_label"
+            style="@style/BaseText.Subtitle.TransparentWhite.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_big"
+            android:layout_marginStart="@dimen/weather_day_margin"
+            android:text="@{data.dayDetailItem.getDayName()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline_day"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/weather_status_label"
+            style="@style/BaseText.Subtitle.TransparentWhite.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_big"
+            android:layout_marginVertical="@dimen/margin_big"
+            android:text="@{data.dayDetailItem.getWeatherStatus()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_weather_amount"
+            app:layout_constraintStart_toEndOf="@id/guideline_day"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constrainedWidth="true" />
+
+        <TextView
+            android:id="@+id/weather_max_label"
+            style="@style/BaseText.Subtitle.TransparentWhite.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.format(@string/weather_amount, data.dayDetailItem.getMaxWeatherTemperature())}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/weather_min_label"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/guideline_weather_amount"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constrainedWidth="true" />
+
+        <TextView
+            android:id="@+id/weather_min_label"
+            style="@style/BaseText.Subtitle.TransparentWhite.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_very_small"
+            android:text="@{String.format(@string/weather_amount, data.dayDetailItem.getMinWeatherTemperature())}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/right_arrow"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/weather_max_label"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ImageView
+            android:id="@+id/right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_big"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_arrow_right_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".30" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_weather_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".65" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

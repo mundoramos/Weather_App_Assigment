@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Generals Margins. -->
+    <dimen name="margin_very_small">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_big">16dp</dimen>
+    <dimen name="margin_large">72dp</dimen>
+
+    <dimen name="weather_day_margin">32dp</dimen>
+
+    <!-- Texts -->
+    <dimen name="dialog_small_text_size">10sp</dimen>
+    <dimen name="smallest_text_size">12sp</dimen>
+    <dimen name="small_text_size">14sp</dimen>
+    <dimen name="normal_text_size">16sp</dimen>
+    <dimen name="medium_text_size">18sp</dimen>
+    <dimen name="big_text_size">24sp</dimen>
+    <dimen name="small_title_text_size">48sp</dimen>
+    <dimen name="biggest_text_size">72sp</dimen>
+
+    <dimen name="weather_icon_size">225dp</dimen>
+    <dimen name="weather_icon_circle_size">42sp</dimen>
+    <dimen name="weather_icon_circle_small">32sp</dimen>
+
+</resources>

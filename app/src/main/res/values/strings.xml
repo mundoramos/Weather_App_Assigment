@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Weather App Assignment</string>
+
+    <string name="weather_amount">%1$s°</string>
+    <string name="wind_speed">%1$.2f m/s</string>
+    <string name="percentage_format">%1$d%%</string>
+
+    <string name="weather_image">Weather Image</string>
+    <string name="weather_amount_circle">°</string>
+    <string name="weather_wind_label">Wind</string>
+    <string name="weather_humidity_label">Humidity</string>
+    <string name="weather_chance_of_rain_label">Chance of rain</string>
+    <string name="weather_forecast_label">Forecast 14 days</string>
+</resources>
