@@ -9,6 +9,9 @@
     <dimen name="margin_large">72dp</dimen>
 
     <dimen name="weather_day_margin">32dp</dimen>
+    <dimen name="weather_small_icon">24dp</dimen>
+    <dimen name="weather_divider_margin">50dp</dimen>
+    <dimen name="weather_info_bottom_margin">20dp</dimen>
 
     <!-- Texts -->
     <dimen name="dialog_small_text_size">10sp</dimen>

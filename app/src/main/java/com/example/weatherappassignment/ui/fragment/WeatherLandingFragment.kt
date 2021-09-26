@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -31,6 +31,7 @@ class WeatherLandingFragment : Fragment() {
         ViewModelProvider(requireActivity(), viewModelFactory).get(WeatherViewModel::class.java)
     }
 
+    private var mCoordinatorLayout: CoordinatorLayout? = null
     private var weatherListAdapter: WeatherListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class WeatherLandingFragment : Fragment() {
         weatherViewModel.run {
             getWeatherForecast()
 
-            viewSelectedWeatherDay.observe(this@WeatherLandingFragment, Observer {
+            viewSelectedWeatherDay.observe(this@WeatherLandingFragment, {
                 navController.navigate(R.id.action_weatherLandingFragment_to_weatherDayDetailFragment)
             })
         }
@@ -60,8 +61,7 @@ class WeatherLandingFragment : Fragment() {
             lifecycleOwner = this@WeatherLandingFragment
             vm = weatherViewModel
 
-            (activity as AppCompatActivity?)?.setSupportActionBar(weatherToolbar)
-
+            mCoordinatorLayout = coordinatorLayout
             val appBarLayoutParams = weatherAppBar.layoutParams
             appBarLayoutParams.height = (resources.displayMetrics.heightPixels * 0.80).toInt()
 
@@ -69,6 +69,13 @@ class WeatherLandingFragment : Fragment() {
             forecastRecyclerview.adapter = weatherListAdapter
 
             root
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mCoordinatorLayout?.let {
+            ViewCompat.requestApplyInsets(it)
         }
     }
 

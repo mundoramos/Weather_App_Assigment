@@ -11,6 +11,7 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/dark_blue"
@@ -156,7 +157,7 @@
                         android:id="@+id/view_separator"
                         android:layout_width="0dp"
                         android:layout_height="1dp"
-                        android:layout_marginHorizontal="50dp"
+                        android:layout_marginHorizontal="@dimen/weather_divider_margin"
                         android:background="@color/separator"
                         app:layout_constraintBottom_toTopOf="@id/guideline_divider"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -174,7 +175,7 @@
                         style="@style/BaseText.Subtitle.TransparentWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="@dimen/weather_info_bottom_margin"
                         android:text="@string/weather_wind_label"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -188,7 +189,7 @@
                         style="@style/BaseText.Subtitle.TransparentWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="@dimen/weather_info_bottom_margin"
                         android:text="@string/weather_humidity_label"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -202,7 +203,7 @@
                         style="@style/BaseText.Subtitle.TransparentWhite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="@dimen/weather_info_bottom_margin"
                         android:text="@string/weather_chance_of_rain_label"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -251,13 +252,6 @@
                         tools:text="--" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/weather_toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:titleTextColor="@color/white" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>

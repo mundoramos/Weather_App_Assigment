@@ -28,7 +28,7 @@ data class WeatherForecastDayObject(
     fun getWeatherHotOrCold(): String {
         return when {
             tempMax > 25 -> "Hot"
-            tempMin < 10 -> "Cold"
+            tempMax < 10 -> "Cold"
             else -> ""
         }
     }
