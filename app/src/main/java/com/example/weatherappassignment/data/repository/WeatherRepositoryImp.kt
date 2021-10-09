@@ -5,7 +5,6 @@ import com.example.weatherappassignment.data.model.WeatherForecastDayObject
 import com.example.weatherappassignment.data.remote.WeatherRemote
 import io.reactivex.Completable
 import io.reactivex.Single
-import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 
 class WeatherRepositoryImp @Inject constructor(
@@ -13,23 +12,11 @@ class WeatherRepositoryImp @Inject constructor(
     private val weatherCache: WeatherCache
 ) : WeatherRepository {
     override fun getWeatherForecast(cityName: String): Single<List<WeatherForecastDayObject>> {
-        return Single.zip(
-            weatherRemote.getWeatherForecast(cityName),
-            Single.just(0),
-            BiFunction<List<WeatherForecastDayObject>, Int, List<WeatherForecastDayObject>> { remoteWeather, _ ->
-                remoteWeather
-            }
-        )
+        return weatherRemote.getWeatherForecast(cityName)
     }
 
     override fun getStoredWeatherForecast(): Single<List<WeatherForecastDayObject>> {
-        return Single.zip(
-            weatherCache.getWeatherForecast(),
-            Single.just(0),
-            BiFunction<List<WeatherForecastDayObject>, Int, List<WeatherForecastDayObject>> { cacheWeather, _ ->
-                cacheWeather
-            }
-        )
+        return weatherCache.getWeatherForecast()
     }
 
     override fun saveWeatherForecastDay(weatherForecastDayObject: List<WeatherForecastDayObject>): Completable {
